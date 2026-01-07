@@ -1,0 +1,65 @@
+// Confetti on page load
+window.onload = function() {
+    createConfetti();
+};
+
+// Confetti function
+function createConfetti() {
+    const colors = ["#ff0a54","#ff477e","#ff85a1","#fbb1b1","#f9bec7"];
+    for (let i = 0; i < 150; i++) {
+        const confetti = document.createElement("div");
+        confetti.classList.add("confetti");
+        confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+        confetti.style.left = Math.random() * 100 + "vw";
+        confetti.style.animationDuration = 2 + Math.random() * 3 + "s";
+        document.body.appendChild(confetti);
+        setTimeout(() => confetti.remove(), 5000);
+    }
+}
+
+// Modal functions
+function openModal(img) {
+    const modal = document.getElementById("modal");
+    const modalImg = document.getElementById("modalImg");
+    modal.style.display = "flex";
+    modalImg.src = img.src;
+    modalImg.style.transform = "scale(0)";
+    setTimeout(() => modalImg.style.transform = "scale(1)", 10);
+}
+
+function closeModal() {
+    document.getElementById("modal").style.display = "none";
+}
+// Celebrate button action
+document.getElementById("celebrateBtn").addEventListener("click", () => {
+    // Play music
+    const music = document.getElementById("bgMusic");
+    music.play().catch(()=>{}); // in case mobile requires interaction
+
+    // Burst of confetti
+    createConfetti(200); // more confetti
+});
+
+// Confetti function
+function createConfetti(amount = 150) { // default 150 if no argument
+    const colors = ["#ff0a54","#ff477e","#ff85a1","#fbb1b1","#f9bec7"];
+    for (let i = 0; i < amount; i++) {
+        const confetti = document.createElement("div");
+        confetti.classList.add("confetti");
+        confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+        confetti.style.left = Math.random() * 100 + "vw";
+        confetti.style.animationDuration = 2 + Math.random() * 3 + "s";
+        document.body.appendChild(confetti);
+        setTimeout(() => confetti.remove(), 5000);
+    }
+}
+
+// Optional: initial confetti on page load
+window.onload = () => {
+    createConfetti();
+};
+document.getElementById("celebrateBtn").addEventListener("click", () => {
+    const music = document.getElementById("bgMusic");
+    music.play().catch(()=>{}); // ensures it works on mobile
+    createConfetti(200);        // burst of confetti
+});
